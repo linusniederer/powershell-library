@@ -16,8 +16,7 @@
 # --------------------------------------------------------
 #
 
-# type --> IPv4 / IPv6
-function global:get-vm-ipaddress ( $vmname, $type ) {
+function get-vm-ipaddress ( $vmname, $type ) {
 
     # get IPv4 Address
     if ( $type -eq "IPv4" ) {
