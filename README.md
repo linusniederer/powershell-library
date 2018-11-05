@@ -14,7 +14,7 @@ Die Funktion get-vm-ipaddress() liefert die Ipadresse einer VM, ohne dass eine N
 
 `get-vm-ipaddress( $vmname, $type )` 
 
-Die Variable `$vmname` muss mit dem Namen der VM auf dem Host befüllt werden. Der Parameter Type akzeptiert folgende Werte:
+Die Variable `$vmname` muss mit dem Namen der VM auf dem Host befüllt werden. Der Parameter `$type` akzeptiert folgende Werte:
 - 'IPv4' oder '4'
 - 'IPv6' oder '6'
 
