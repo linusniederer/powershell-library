@@ -9,13 +9,42 @@ Dieses Projekt beinhaltet eine PowerShell Bibliothek, welche den alltäglichen U
 ## Hyper-V
 In diesem Abschnitt befinden sich funktionen, welche zusammen mit Hyper-V benutzt werden können.
 
-### Funktion - get-vm-ipaddress()
-Die Funktion get-vm-ipaddress() liefert die Ipadresse einer VM, ohne dass eine Netzwerkverbindung zu VM gemacht werden muss.
 
-`get-vm-ipaddress( $vmname, $type )` 
+### Funktion: create-vm
+Erstellt eine neue VM auf diesem Host.
 
-Die Variable `$vmname` muss mit dem Namen der VM auf dem Host befüllt werden. Der Parameter `$type` akzeptiert folgende Werte:
-- 'IPv4' oder '4'
-- 'IPv6' oder '6'
+`
+create-vm
+	[[-vmname] <String>]
+    [[-type] <String>]
+`
+
+**Beispiel 1**
+
+`get-vm-ipaddress -vmname "COMPUTERNAME" -type "IPv4"`
+
+**Bemerkungen**
 
 Je nach dem welcher Typ gewählt wird, wird das IPv4 oder das IPv6 Protokoll zurückgegeben. Die Funktion liefert die IPaddresse als Variable zurück, weshalb es Sinn macht, die Funktion direkt in eine Variable zu speichern.
+
+---
+
+### Funktion: get-vm-ipaddress
+Liefert die Ip Adresse einer VM zurück, welche sich auf dem Host befindet.
+
+`
+get-vm-ipaddress
+	[[-vmname] <String>]
+    [[-type] <String>]
+`
+
+**Beispiel 1**
+
+`get-vm-ipaddress -vmname "COMPUTERNAME" -type "IPv4"`
+
+**Bemerkungen**
+
+Je nach dem welcher Typ gewählt wird, wird das IPv4 oder das IPv6 Protokoll zurückgegeben. Die Funktion liefert die IPaddresse als Variable zurück, weshalb es Sinn macht, die Funktion direkt in eine Variable zu speichern.
+
+---
+
