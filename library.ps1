@@ -16,6 +16,22 @@
 # --------------------------------------------------------
 #
 
+function create-vm ( $vmname, $generation, $ram, $dynamicmemory, $switch, $vhdpath, $cpu, $integration, $startaction, $stopaction ) {
+    
+    # create new vm
+    New-VM -Name $vmname -Generation $generation -MemoryStartupBytes $ram -SwitchName $switch -VHDPath $vhdpath
+    
+    # set vm options
+    Set-VMProcessor -VmName $vmname -Count $cpu
+    Set-VMMemory -VmName $vmname -DynamicMemoryEnabled $false
+    Set-VM -VmName $vmname -AutomaticStopAction $stopaction
+    Set-VM -VmName $vmname -AutomaticStartAction $startaction
+
+    # integrationservices
+    Enable-VMIntegrationService -Name “Gastdienstschnittstelle” -vmName "$name"
+    Disable-VMIntegrationService -Name “Zeitsynchronisierung” -vmName "$name"
+}
+
 function get-vm-ipaddress ( $vmname, $type ) {
 
     # get IPv4 Address
@@ -39,9 +55,8 @@ function get-vm-ipaddress ( $vmname, $type ) {
     return $ipaddress;
 }
 
-
 #
 # --------------------------------------------------------
-# Abschnitt: HYPER-V MANAGEMENT
+# Abschnitt: ERROR REPORTING
 # --------------------------------------------------------
 #
