@@ -19,13 +19,13 @@
 function get-vm-ipaddress ( $vmname, $type ) {
 
     # get IPv4 Address
-    if ( $type -eq "IPv4" ) {
+    if ( $type -eq "IPv4" -or $type -eq 4 ) {
         $network = ( GEt-VM -VMName $vmname | Get-VMNetworkAdapter).IpAddresses | Select-String -List 1;
         $ipaddress = $network[0]
     } 
 
     # get IPv6 Address
-    if ( $type -eq "IPv6" ) {
+    if ( $type -eq "IPv6" -or $type -eq 6 ) {
         $network = ( GEt-VM -VMName $vmname | Get-VMNetworkAdapter).IpAddresses | Select-String -List 1;
         $ipaddress = $network[1]
     } 
@@ -38,3 +38,10 @@ function get-vm-ipaddress ( $vmname, $type ) {
 
     return $ipaddress;
 }
+
+
+#
+# --------------------------------------------------------
+# Abschnitt: HYPER-V MANAGEMENT
+# --------------------------------------------------------
+#
