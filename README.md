@@ -9,33 +9,6 @@ Dieses Projekt beinhaltet eine PowerShell Bibliothek, welche den alltäglichen U
 ## Hyper-V
 In diesem Abschnitt befinden sich funktionen, welche zusammen mit Hyper-V benutzt werden können.
 
-
-### Funktion: create-vm
-Erstellt eine neue VM auf diesem Host.
-
-`
-create-vm
-	[[-vmname] <String>]
-    [[-generation] <Int>]
-    [[-ram] <Int>]
-    [[-dynamicmemory] <Boolean>]
-    [[-switch] <String>]
-    [[-vhdpath] <String>]
-    [[-cpu] <Int>]
-    [[-startaction] <String>]
-    [[-stopaction] <String>]
-`
-
-**Beispiel 1**
-
-`get-vm-ipaddress -vmname "COMPUTERNAME" -type "IPv4"`
-
-**Bemerkungen**
-
-Je nach dem welcher Typ gewählt wird, wird das IPv4 oder das IPv6 Protokoll zurückgegeben. Die Funktion liefert die IPaddresse als Variable zurück, weshalb es Sinn macht, die Funktion direkt in eine Variable zu speichern.
-
----
-
 ### Funktion: get-vm-ipaddress
 Liefert die Ip Adresse einer VM zurück, welche sich auf dem Host befindet.
 
