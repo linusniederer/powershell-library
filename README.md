@@ -55,3 +55,25 @@ Bei diesem Beispiel wird das Passwort in Klartext mitgegeben. Das ist Riskant, d
 
 In diesem Beispiel ist das Passwort nicht zu sehen, da es sich verschlüsselt in der password.txt befindet. Verschlüsselte Passwortdateien können mit der Funktion `create-credential-file` erstellt werden.
 
+---
+
+### Funktion: create-credential-file
+Erstellt eine Variable welche zum Beispiel bei Remotbefehlen verwendet werden kann.
+
+`
+create-credential-file
+    [[-password] <String>]
+    [[-filepath] <String>]
+`
+
+**Beispiel 1**
+
+`create-credential-file -password "password123" -filepath "C:\Temp\credentials.txt"`
+
+**Bemerkungen**
+
+Das Passwort muss in Klartext mitgegeben werden. Die Funktion erstellt nun eine Textdatei, welche bei anderen Funktionen verwendet werden kann. Dieser Teil muss nur einmal ausgeführt werden, nun kann die Textdatei immer wieder verwendet werden. Zum Beispiel mit der Funktion `create-credential`.
+
+---
+
+
