@@ -16,7 +16,14 @@ Erstellt eine neue VM auf diesem Host.
 `
 create-vm
 	[[-vmname] <String>]
-    [[-type] <String>]
+    [[-generation] <Int>]
+    [[-ram] <Int>]
+    [[-dynamicmemory] <Boolean>]
+    [[-switch] <String>]
+    [[-vhdpath] <String>]
+    [[-cpu] <Int>]
+    [[-startaction] <String>]
+    [[-stopaction] <String>]
 `
 
 **Beispiel 1**
