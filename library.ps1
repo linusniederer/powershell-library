@@ -124,7 +124,6 @@ function create-form-object ( $form, $type, $text, $value, $height, $width, $aut
 
     # set object options
     $object.text                    = $text
-    
     $object.height                  = $height
     $object.width                   = $width
     $object.autosize                = $autosize
