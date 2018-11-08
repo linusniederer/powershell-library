@@ -77,24 +77,50 @@ function create-credential-file ( $password, $filepath )  {
 # --------------------------------------------------------
 #
 
-function create-form-object ( $form, $type, $name, $xpos, $ypos, $height, $width, $text, $bgcolor, $color ) {
-   
+function create-form-window ($bgcolor, $startposition, $height, $width, $text ) {
+    
+    # init form moduls
+    [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Drawing")
+    [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")
+
+    # set form options
+    $form = New-Object System.Windows.Forms.Form
+    $form.BackColor = $bgcolor
+    $form.StartPosition = $startposition
+    $form.Size = New-Object System.Drawing.Size( $width, $height )
+    $form.Text = $text
+
+    return $form;
+
+}
+
+function create-form-object ( $form, $type, $text, $height, $width, $autosize, $enabled, $bgcolor, $font, $xpos, $ypos ) {
+    
+    # check for errors
+    if ($form -eq $NULL ) { $form = create-form-window -height 300 -width 300 -bgcolor "white" -startposition "centerscreen" -text "Generated!!!" }
+
+    # standard options if $param = NULL  
+    if ( $type -eq $NULL ) { $type = "label" }
+    if ( $autosize -eq $NULL ) { $autosize = $true }
+    if ( $bgcolor -eq $NULL ) { $bgcolor = "white" }
+    if ( $enabled -eq $NULL ) { $enabled = $true }
+
     # get type of object
     if ( $type -eq "textbox" ) { $object = New-Object System.Windows.Forms.TextBox }
     if ( $type -eq "label" ) { $object = New-Object System.Windows.Forms.Label }
 
     # set object options
-    $object.Location = New-Object System.Drawing.Size( $xpos, $ypos )
-    $object.Size = New-Object System.Drawing.Size( $width, $height )
-    $object.Text = $text
+    $object.text                    = $text
+    $object.height                  = $height
+    $object.width                   = $width
+    $object.autosize                = $autosize
+    $object.enabled                 = $enabled
+    $object.backcolor               = $bgcolor
+    $object.font                    = $font
+    $object.location                = New-Object System.Drawing.Point($xpos, $ypos)
 
     # add to form
     $form.Controls.Add($object)
     return $form
-
-}
-
-function draw-form-object () {
-
 
 }
