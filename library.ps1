@@ -77,18 +77,27 @@ function create-credential-file ( $password, $filepath )  {
 # --------------------------------------------------------
 #
 
-function create-form-window ($bgcolor, $startposition, $height, $width, $text ) {
+function create-form-window ($text, $bgcolor, $startposition, $icon, $height, $width ) {
     
     # init form moduls
     [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Drawing")
     [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")
 
-    # set form options
+    # standard options if $param = NULL  
+    if ( $bgcolor -eq $NULL )        { $bgcolor = "white" }
+    if ( $startposition -eq $NULL )  { $startposition = "centerscreen" }
+    if ( $height -eq $NULL )         { $height = 400 }
+    if ( $width -eq $NULL )          { $width = 800 }
+
+    # create form object
     $form = New-Object System.Windows.Forms.Form
-    $form.BackColor = $bgcolor
-    $form.StartPosition = $startposition
-    $form.Size = New-Object System.Drawing.Size( $width, $height )
-    $form.Text = $text
+
+    # set form options
+    $form.text              = $text
+    $form.backcolor         = $bgcolor
+    $form.startposition     = $startposition
+    $form.icon              = $icon
+    $form.size              = New-Object System.Drawing.Size( $width, $height )
 
     return $form;
 
@@ -123,14 +132,14 @@ function create-form-object ( $form, $type, $text, $value, $height, $width, $aut
     }
 
     # set object options
-    $object.text                    = $text
-    $object.height                  = $height
-    $object.width                   = $width
-    $object.autosize                = $autosize
-    $object.enabled                 = $enabled
-    $object.backcolor               = $bgcolor
-    $object.font                    = $font
-    $object.location                = New-Object System.Drawing.Point( $xpos, $ypos )
+    $object.text        = $text
+    $object.height      = $height
+    $object.width       = $width
+    $object.autosize    = $autosize
+    $object.enabled     = $enabled
+    $object.backcolor   = $bgcolor
+    $object.font        = $font
+    $object.location    = New-Object System.Drawing.Point( $xpos, $ypos )
 
     # set object events
     $object.add_click( $click )

@@ -78,22 +78,70 @@ Das Passwort muss in Klartext mitgegeben werden. Die Funktion erstellt nun eine 
 ## User Interface
 In diesem Abschnitt befinden sich Funktionen, mit welchen man Windows User Interfaces bauen kann.
 
+### Funktion: create-form-window
+Erstellt ein GUI, welches mit Form Objekten befüllt werden kann.
+
+`
+create-form-window
+    [[-text] <String>]
+    [[-bgcolor] <String>]
+    [[-startposition] <String>]
+    [[-icon] <String>]
+    [[-height] <String>]
+    [[-width] <String>]
+`
+
+**Beispiel 1**
+
+`
+$form = create-form-window -text "Hallo Welt" -startposition "centerscreen"
+[void] $form.ShowDialog()
+`
+
+**Bemerkungen**
+
+Die gesammte Funktion muss in eine Variable gespeichert werden, damit sie später mit dem `ShowDialog()` angezeigt werden kann. Objekte müssen zwischen der ersten und zweiten Zeile erstellt werden. Siehe Funktion `create-form-object`.
+
+---
+
 ### Funktion: create-form-object
 Erstellt eine Variable welche zum Beispiel bei Remotbefehlen verwendet werden kann.
 
 `
 create-form-object
-    [[-password] <String>]
-    [[-filepath] <String>]
+    [[-form] <var>]
+    [[-type] <String>]
+    [[-text] <String>]
+    [[-value] <int>]
+    [[-height] <int>]
+    [[-width] <int>]
+    [[-autosize] <bool>]
+    [[-enabled] <bool>]
+    [[-bgcolor] <String>]
+    [[-font] <String>]
+    [[-imagepath] <String>]
+    [[-xpos] <int>]
+    [[-ypos] <int>]
+    [[-click] <String>]
 `
 
 **Beispiel 1**
 
-`create-credential-file -password "password123" -filepath "C:\Temp\credentials.txt"`
+`
+create-form-object -form $form -type 'button' -height 30 -width 120 -click $event
+$event = { Write-Host "Button used" }
+`
 
 **Bemerkungen**
 
-Das Passwort muss in Klartext mitgegeben werden. Die Funktion erstellt nun eine Textdatei, welche bei anderen Funktionen verwendet werden kann. Dieser Teil muss nur einmal ausgeführt werden, nun kann die Textdatei immer wieder verwendet werden. Zum Beispiel mit der Funktion `create-credential`.
+Wichtig ist, dass die `$form` immer mitgegeben wird, damit das Objekt gezeichnet werden kann. Mithilfe des Parameters `-type` wird ein Button erstellt. Die Variable `$event` enthält die Anweisung, falls der Button gedrückt wurde.
 
+**Beispiel 2**
+
+`create-form-object -form $form -type 'label' -height 30 -width 120 -text "Hallo Welt"`
+
+**Bemerkungen**
+
+In dieser Funktion wird ein Label erstellt, welches den Text "Hallo Welt" ausgibt.
 
 
