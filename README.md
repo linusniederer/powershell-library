@@ -4,6 +4,7 @@ Dieses Projekt beinhaltet eine PowerShell Bibliothek, welche den alltäglichen U
 ### Inhaltsverzeichnis
 1. Hyper-V
 2. Authentifikation
+3. User Interface
 
 ## Hyper-V
 In diesem Abschnitt befinden sich funktionen, welche zusammen mit Hyper-V benutzt werden können.
@@ -74,6 +75,25 @@ create-credential-file
 
 Das Passwort muss in Klartext mitgegeben werden. Die Funktion erstellt nun eine Textdatei, welche bei anderen Funktionen verwendet werden kann. Dieser Teil muss nur einmal ausgeführt werden, nun kann die Textdatei immer wieder verwendet werden. Zum Beispiel mit der Funktion `create-credential`.
 
----
+## User Interface
+In diesem Abschnitt befinden sich Funktionen, mit welchen man Windows User Interfaces bauen kann.
+
+### Funktion: create-form-object
+Erstellt eine Variable welche zum Beispiel bei Remotbefehlen verwendet werden kann.
+
+`
+create-form-object
+    [[-password] <String>]
+    [[-filepath] <String>]
+`
+
+**Beispiel 1**
+
+`create-credential-file -password "password123" -filepath "C:\Temp\credentials.txt"`
+
+**Bemerkungen**
+
+Das Passwort muss in Klartext mitgegeben werden. Die Funktion erstellt nun eine Textdatei, welche bei anderen Funktionen verwendet werden kann. Dieser Teil muss nur einmal ausgeführt werden, nun kann die Textdatei immer wieder verwendet werden. Zum Beispiel mit der Funktion `create-credential`.
+
 
 

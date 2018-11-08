@@ -77,22 +77,20 @@ function create-credential-file ( $password, $filepath )  {
 # --------------------------------------------------------
 #
 
-function create-form-object ( $type, $name, $xpos, $ypos, $height, $width, $text, $bgcolor, $color ) {
-    
-    # if $type == label
-    if ( $type -eq "label" ) {
-        
-        # $objform = create-form-window
+function create-form-object ( $form, $type, $name, $xpos, $ypos, $height, $width, $text, $bgcolor, $color ) {
+   
+    # get type of object
+    if ( $type -eq "textbox" ) { $object = New-Object System.Windows.Forms.TextBox }
+    if ( $type -eq "label" ) { $object = New-Object System.Windows.Forms.Label }
 
-        $objlabel = New-Object System.Windows.Forms.Label
-        $objlabel.Location = New-Object System.Drawing.Size( $xpos, $ypos )
-        $objlabel.Size = New-Object System.Drawing.Size( $width, $height )
-        $objlabel.Text = $text
+    # set object options
+    $object.Location = New-Object System.Drawing.Size( $xpos, $ypos )
+    $object.Size = New-Object System.Drawing.Size( $width, $height )
+    $object.Text = $text
 
-        return $objlabel
-    }
-    
-    # if $type == button 
+    # add to form
+    $form.Controls.Add($object)
+    return $form
 
 }
 
