@@ -97,7 +97,7 @@ function create-form-window ($bgcolor, $startposition, $height, $width, $text ) 
 function create-form-object ( $form, $type, $text, $height, $width, $autosize, $enabled, $bgcolor, $font, $xpos, $ypos ) {
     
     # check for errors
-    if ($form -eq $NULL ) { $form = create-form-window -height 300 -width 300 -bgcolor "white" -startposition "centerscreen" -text "Generated!!!" }
+    if ($form -eq $NULL ) { $form = create-form-window -height 400 -width 800 -bgcolor "white" -startposition "centerscreen" -text "Generated!!!" }
 
     # standard options if $param = NULL  
     if ( $type -eq $NULL ) { $type = "label" }
