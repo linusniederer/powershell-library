@@ -19,13 +19,13 @@
 function get-vm-ipaddress ( $vmname, $type ) {
 
     # get IPv4 Address
-    if ( $type -eq "IPv4" -or $type -eq 4 ) {
+    if ( $type -eq "ipv4" -or $type -eq 4 ) {
         $network = ( GEt-VM -VMName $vmname | Get-VMNetworkAdapter).IpAddresses | Select-String -List 1;
         $ipaddress = $network[0]
     } 
 
     # get IPv6 Address
-    if ( $type -eq "IPv6" -or $type -eq 6 ) {
+    if ( $type -eq "ipv6" -or $type -eq 6 ) {
         $network = ( GEt-VM -VMName $vmname | Get-VMNetworkAdapter).IpAddresses | Select-String -List 1;
         $ipaddress = $network[1]
     } 
@@ -69,4 +69,34 @@ function create-credential-file ( $password, $filepath )  {
 
     $securepw = ConvertTo-SecureString $password -AsPlainText -Force
     $securepw | ConvertFrom-SecureString | Out-File $filepath
+}
+
+#
+# --------------------------------------------------------
+# Abschnitt: USER INTERFACE
+# --------------------------------------------------------
+#
+
+function create-form-object ( $type, $name, $xpos, $ypos, $height, $width, $text, $bgcolor, $color ) {
+    
+    # if $type == label
+    if ( $type -eq "label" ) {
+        
+        # $objform = create-form-window
+
+        $objlabel = New-Object System.Windows.Forms.Label
+        $objlabel.Location = New-Object System.Drawing.Size( $xpos, $ypos )
+        $objlabel.Size = New-Object System.Drawing.Size( $width, $height )
+        $objlabel.Text = $text
+
+        return $objlabel
+    }
+    
+    # if $type == button 
+
+}
+
+function draw-form-object () {
+
+
 }
