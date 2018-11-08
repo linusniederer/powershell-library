@@ -94,33 +94,50 @@ function create-form-window ($bgcolor, $startposition, $height, $width, $text ) 
 
 }
 
-function create-form-object ( $form, $type, $text, $height, $width, $autosize, $enabled, $bgcolor, $font, $xpos, $ypos ) {
+function create-form-object ( $form, $type, $text, $value, $height, $width, $autosize, $enabled, $bgcolor, $font, $imagepath, $xpos, $ypos, $click ) {
     
     # check for errors
     if ($form -eq $NULL ) { $form = create-form-window -height 400 -width 800 -bgcolor "white" -startposition "centerscreen" -text "Generated!!!" }
 
     # standard options if $param = NULL  
-    if ( $type -eq $NULL ) { $type = "label" }
+    if ( $type -eq $NULL )     { $type = "label" }
     if ( $autosize -eq $NULL ) { $autosize = $true }
-    if ( $bgcolor -eq $NULL ) { $bgcolor = "white" }
-    if ( $enabled -eq $NULL ) { $enabled = $true }
+    if ( $bgcolor -eq $NULL )  { $bgcolor = "white" }
+    if ( $enabled -eq $NULL )  { $enabled = $true }
 
     # get type of object
-    if ( $type -eq "textbox" ) { $object = New-Object System.Windows.Forms.TextBox }
-    if ( $type -eq "label" ) { $object = New-Object System.Windows.Forms.Label }
+    if ( $type -eq "textbox" )  { $object = New-Object System.Windows.Forms.TextBox }
+    if ( $type -eq "label" )    { $object = New-Object System.Windows.Forms.Label }
+    if ( $type -eq "button" )   { $object = New-Object System.Windows.Forms.Button }
+    if ( $type -eq "checkbox" ) { $object = New-Object System.Windows.Forms.Checkbox }
+
+    # special type
+    if ( $type -eq "picturebox" )  { 
+        $object = New-Object System.Windows.Forms.PictureBox 
+        $object.ImageLocation = $imagepath
+    }
+
+    if ( $type -eq "progressbar" ) { 
+        $object = New-Object System.Windows.Forms.ProgressBar 
+        $object.value  = $value
+    }
 
     # set object options
     $object.text                    = $text
+    
     $object.height                  = $height
     $object.width                   = $width
     $object.autosize                = $autosize
     $object.enabled                 = $enabled
     $object.backcolor               = $bgcolor
     $object.font                    = $font
-    $object.location                = New-Object System.Drawing.Point($xpos, $ypos)
+    $object.location                = New-Object System.Drawing.Point( $xpos, $ypos )
+
+    # set object events
+    $object.add_click( $click )
 
     # add to form
-    $form.Controls.Add($object)
+    $form.Controls.Add( $object )
     return $form
 
 }
