@@ -77,7 +77,7 @@ function create-credential-file ( $password, $filepath )  {
 # --------------------------------------------------------
 #
 
-function create-form-window ($text, $bgcolor, $startposition, $icon, $height, $width ) {
+function create-form-window ($text, $bgcolor, $startposition, $icon, $maximize, $height, $width ) {
     
     # init form moduls
     [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Drawing")
@@ -86,6 +86,7 @@ function create-form-window ($text, $bgcolor, $startposition, $icon, $height, $w
     # standard options if $param = NULL  
     if ( $bgcolor -eq $NULL )        { $bgcolor = "white" }
     if ( $startposition -eq $NULL )  { $startposition = "centerscreen" }
+    if ( $maximize -eq $NULL )       { $maximize = $false }
     if ( $height -eq $NULL )         { $height = 400 }
     if ( $width -eq $NULL )          { $width = 800 }
 
@@ -97,6 +98,9 @@ function create-form-window ($text, $bgcolor, $startposition, $icon, $height, $w
     $form.backcolor         = $bgcolor
     $form.startposition     = $startposition
     $form.icon              = $icon
+    $form.MaximizeBox       = $maximize
+    $form.minimumSize       = New-Object System.Drawing.Size( $width, $height )
+    $form.MaximumSize       = New-Object System.Drawing.Size( $width, $height )
     $form.size              = New-Object System.Drawing.Size( $width, $height )
 
     return $form;

@@ -87,6 +87,7 @@ create-form-window
     [[-bgcolor] <String>]
     [[-startposition] <String>]
     [[-icon] <String>]
+    [[-maximize] <bool>]
     [[-height] <String>]
     [[-width] <String>]
 `
