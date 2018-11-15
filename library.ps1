@@ -12,6 +12,19 @@
 
 #
 # --------------------------------------------------------
+# Abschnitt: GENERAL
+# --------------------------------------------------------
+#
+
+function get-scriptpath () {
+
+    # get scriptpath into var
+    $scriptpath = split-path -parent $MyInvocation.MyCommand.Definition
+    return $scriptpath
+}
+
+#
+# --------------------------------------------------------
 # Abschnitt: HYPER-V MANAGEMENT
 # --------------------------------------------------------
 #
@@ -30,7 +43,7 @@ function get-vm-ipaddress ( $vmname, $type ) {
         $ipaddress = $network[1]
     } 
 
-    # if Type empty -> IPv4
+    # if type empty -> IPv4
     else {
         $network = ( GEt-VM -VMName $vmname | Get-VMNetworkAdapter).IpAddresses | Select-String -List 1;
         $ipaddress = $network[0]
@@ -151,5 +164,39 @@ function create-form-object ( $form, $type, $text, $value, $height, $width, $aut
     # add to form
     $form.Controls.Add( $object )
     return $form
+
+}
+
+#
+# --------------------------------------------------------
+# Abschnitt: REPORTING
+# --------------------------------------------------------
+#
+
+function write-log () {
+    
+    # get parameters
+    $text = $args[0]
+    $scp = get-scriptpath
+
+    # init log
+    New-Item -ItemType directory -Path "$scp\log\" -force
+
+
+
+    # ERROR found
+    if ( $text -like "*ERROR*" ) {
+
+    }
+    
+    # WARNING found
+    if ( $text -like "*WARNING*" ) {
+
+    }
+
+}
+
+function get-log () {
+
 
 }
