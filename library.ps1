@@ -12,19 +12,6 @@
 
 #
 # --------------------------------------------------------
-# Abschnitt: GENERAL
-# --------------------------------------------------------
-#
-
-function get-scriptpath () {
-
-    # get scriptpath into var
-    $scriptpath = split-path -parent $MyInvocation.MyCommand.Definition
-    return $scriptpath
-}
-
-#
-# --------------------------------------------------------
 # Abschnitt: HYPER-V MANAGEMENT
 # --------------------------------------------------------
 #
@@ -175,14 +162,11 @@ function create-form-object ( $form, $type, $text, $value, $height, $width, $aut
 
 function write-log () {
     
-    # get parameters
-    $text = $args[0]
-    $scp = get-scriptpath
-
     # init log
-    New-Item -ItemType directory -Path "$scp\log\" -force
+    $text = $args[0]
+    $logpath = $Global:scp 
 
-
+    New-Item -Path "$logpath" -ItemType directory -Name "log"
 
     # ERROR found
     if ( $text -like "*ERROR*" ) {
