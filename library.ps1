@@ -162,7 +162,6 @@ function create-form-object ( $form, $type, $text, $value, $height, $width, $aut
 
 function write-log () {
     
-    # place this code in *.ps1 file
     #   $scp = $PSScriptRoot
     #   $tsp = Get-Date -UFormat "%Y-%m-%d"
     #   $fin = $MyInvocation.ScriptName
@@ -197,9 +196,4 @@ function write-log () {
     # screenoutput
     Write-Host $text -ForegroundColor $color
         
-}
-
-function get-log () {
-
-
 }
