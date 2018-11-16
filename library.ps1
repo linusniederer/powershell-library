@@ -176,10 +176,10 @@ function write-log () {
     $time = Get-Date -DisplayHint time
 
     # ERROR found
-    if ( $text -like "*ERROR*" ) { $color = "red" }
+    if ( $text -like "*ERROR*" -OR $text -like "*FEHLER*" ) { $color = "red" }
     
     # WARNING found
-    if ( $text -like "*WARNING*" ) { $color = "yellow" }
+    if ( $text -like "*WARNING*" -OR $text -like "*WARNUNG*" ) { $color = "yellow" }
 
     if ( Get-Item -Path $logfile -ErrorAction SilentlyContinue ) {
         
@@ -190,7 +190,7 @@ function write-log () {
 
         # create new log
         New-Item -Path $logfile -Force
-        "$time > $text" | Add-Content $logfile
+        "[$time] $text" | Add-Content $logfile
     }
 
     # screenoutput
