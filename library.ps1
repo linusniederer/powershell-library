@@ -190,7 +190,7 @@ function write-log () {
 
         # create new log
         New-Item -Path $logfile -Force
-        "[$time] $text" | Add-Content $logfile
+        "$time > $text" | Add-Content $logfile
     }
 
     # screenoutput
