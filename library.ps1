@@ -165,17 +165,22 @@ function write-log () {
     # init log
     $text = $args[0]
     $logpath = $Global:scp 
+    $logtime = $Global:tsp
+    $filename = 
+    $logfile = $logpath + "\log\" + $filename + "_" + $logtime
 
-    New-Item -Path "$logpath" -ItemType directory -Name "log"
+    if ( Get-Item -Path  ) {
+        New-Item -Path "$logpath" -ItemType directory -Name "log"
 
-    # ERROR found
-    if ( $text -like "*ERROR*" ) {
+        # ERROR found
+        if ( $text -like "*ERROR*" ) {
 
-    }
+        }
     
-    # WARNING found
-    if ( $text -like "*WARNING*" ) {
+        # WARNING found
+        if ( $text -like "*WARNING*" ) {
 
+        }
     }
 
 }
