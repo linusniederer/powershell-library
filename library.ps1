@@ -162,27 +162,41 @@ function create-form-object ( $form, $type, $text, $value, $height, $width, $aut
 
 function write-log () {
     
+    # place this code in *.ps1 file
+    #   $scp = $PSScriptRoot
+    #   $tsp = Get-Date -UFormat "%Y-%m-%d"
+    #   $fin = $MyInvocation.ScriptName
+
     # init log
     $text = $args[0]
     $logpath = $Global:scp 
     $logtime = $Global:tsp
-    $filename = 
-    $logfile = $logpath + "\log\" + $filename + "_" + $logtime
+    $filename = "runtimelog"
+    $logfile = $logpath + "\log\" + $filename + "_" + $logtime + ".log"
+    $color = "white"
+    $time = Get-Date -DisplayHint time
 
-    if ( Get-Item -Path  ) {
-        New-Item -Path "$logpath" -ItemType directory -Name "log"
-
-        # ERROR found
-        if ( $text -like "*ERROR*" ) {
-
-        }
+    # ERROR found
+    if ( $text -like "*ERROR*" ) { $color = "red" }
     
-        # WARNING found
-        if ( $text -like "*WARNING*" ) {
+    # WARNING found
+    if ( $text -like "*WARNING*" ) { $color = "yellow" }
 
-        }
+    if ( Get-Item -Path $logfile -ErrorAction SilentlyContinue ) {
+        
+        # log existing
+        "$time > $text" | Add-Content $logfile
+
+    } else {
+
+        # create new log
+        New-Item -Path $logfile -Force
+        "$time > $text" | Add-Content $logfile
     }
 
+    # screenoutput
+    Write-Host $text -ForegroundColor $color
+        
 }
 
 function get-log () {
