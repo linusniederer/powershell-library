@@ -158,7 +158,7 @@ function create-file-dialog ( $path, $filetype ) {
     
     # standard options if $param = NULL  
     if ( $path -eq $NULL )     { $path = "C:\" }
-    if ( $filetype -eq $NULL ) { $filetype = "*" }
+    if ( $filetype -eq $NULL ) { $filetype = 'Alle Dateien (*.*)|*.*"."'}
 
     [System.Reflection.Assembly]::LoadWithPartialName("System.windows.forms") | Out-Null
 
