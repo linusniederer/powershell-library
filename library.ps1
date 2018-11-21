@@ -163,7 +163,7 @@ function create-file-dialog ( $path, $filetype ) {
     [System.Reflection.Assembly]::LoadWithPartialName("System.windows.forms") | Out-Null
 
     $OpenFileDialog = New-Object System.Windows.Forms.OpenFileDialog
-    $OpenFileDialog.initialDirectory = $initialDirectory
+    $OpenFileDialog.initialDirectory = $path
     $OpenFileDialog.filter = $filetype
     $OpenFileDialog.ShowDialog() | Out-Null
     $OpenFileDialog.filename
