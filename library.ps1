@@ -154,6 +154,22 @@ function create-form-object ( $form, $type, $text, $value, $height, $width, $aut
 
 }
 
+function create-file-dialog ( $path, $filetype ) {
+    
+    # standard options if $param = NULL  
+    if ( $path -eq $NULL )     { $path = "C:\" }
+    if ( $filetype -eq $NULL ) { $filetype = "*" }
+
+    [System.Reflection.Assembly]::LoadWithPartialName("System.windows.forms") | Out-Null
+
+    $OpenFileDialog = New-Object System.Windows.Forms.OpenFileDialog
+    $OpenFileDialog.initialDirectory = $initialDirectory
+    $OpenFileDialog.filter = $filetype
+    $OpenFileDialog.ShowDialog() | Out-Null
+    $OpenFileDialog.filename
+
+}
+
 #
 # --------------------------------------------------------
 # Abschnitt: REPORTING
