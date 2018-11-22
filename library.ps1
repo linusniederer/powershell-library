@@ -107,7 +107,7 @@ function create-form-window ($text, $bgcolor, $startposition, $icon, $maximize, 
 
 }
 
-function create-form-object ( $form, $type, $text, $value, $height, $width, $autosize, $enabled, $color, $bgcolor, $font, $imagepath, $xpos, $ypos, $click) {
+function create-form-object ( $form, $type, $text, $value, $height, $width, $autosize, $enabled, $color, $bgcolor, $font, $imagepath, $xpos, $ypos, $click, $dynamic ) {
     
     # check for errors
     if ($form -eq $NULL ) { $form = create-form-window -height 400 -width 800 -bgcolor "white" -startposition "centerscreen" -text "Generated!!!" }
@@ -118,6 +118,7 @@ function create-form-object ( $form, $type, $text, $value, $height, $width, $aut
     if ( $color -eq $NULL )    { $color = "black" }
     if ( $bgcolor -eq $NULL )  { $bgcolor = "white" }
     if ( $enabled -eq $NULL )  { $enabled = $true }
+    if ( $dynamic -eq $NULL )  { $dynamic = $false }
 
     # get type of object
     if ( $type -eq "textbox" )  { $object = New-Object System.Windows.Forms.TextBox }
@@ -150,9 +151,17 @@ function create-form-object ( $form, $type, $text, $value, $height, $width, $aut
     # set object events
     $object.add_click( $click )
 
-    # add to form
-    $form.Controls.Add( $object )
-    return $form
+    # if dynamic = $false --> return Form
+    if ( $dynamic -eq $false ) {
+        $form.Controls.Add( $object )
+        return $form
+    } 
+    
+    # if dynamic = $false --> return Object
+    if ( $dynamic -eq $true ) {
+        return $object
+    }
+    
 
 }
 
