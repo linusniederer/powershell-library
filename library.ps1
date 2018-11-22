@@ -107,7 +107,7 @@ function create-form-window ($text, $bgcolor, $startposition, $icon, $maximize, 
 
 }
 
-function create-form-object ( $form, $type, $text, $value, $height, $width, $autosize, $enabled, $bgcolor, $font, $imagepath, $xpos, $ypos, $click ) {
+function create-form-object ( $form, $type, $text, $value, $height, $width, $autosize, $enabled, $color, $bgcolor, $font, $imagepath, $xpos, $ypos, $click) {
     
     # check for errors
     if ($form -eq $NULL ) { $form = create-form-window -height 400 -width 800 -bgcolor "white" -startposition "centerscreen" -text "Generated!!!" }
@@ -115,6 +115,7 @@ function create-form-object ( $form, $type, $text, $value, $height, $width, $aut
     # standard options if $param = NULL  
     if ( $type -eq $NULL )     { $type = "label" }
     if ( $autosize -eq $NULL ) { $autosize = $true }
+    if ( $color -eq $NULL )    { $color = "black" }
     if ( $bgcolor -eq $NULL )  { $bgcolor = "white" }
     if ( $enabled -eq $NULL )  { $enabled = $true }
 
@@ -141,6 +142,7 @@ function create-form-object ( $form, $type, $text, $value, $height, $width, $aut
     $object.width       = $width
     $object.autosize    = $autosize
     $object.enabled     = $enabled
+    $object.ForeColor   = $color
     $object.backcolor   = $bgcolor
     $object.font        = $font
     $object.location    = New-Object System.Drawing.Point( $xpos, $ypos )
