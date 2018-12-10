@@ -222,5 +222,19 @@ function write-log () {
 
     # screenoutput
     Write-Host $text -ForegroundColor $color
-        
+       
+}
+
+#
+# --------------------------------------------------------
+# Abschnitt: DATABASES
+# --------------------------------------------------------
+#
+
+function connect-database () {
+
+}
+
+function close-database () {
+
 }
