@@ -221,7 +221,7 @@ function write-log () {
     }
 
     # screenoutput
-    Write-Host $text -ForegroundColor $color
+    Write-Host "$time > $text" -ForegroundColor $color
        
 }
 
@@ -231,8 +231,8 @@ function write-log () {
 # --------------------------------------------------------
 #
 
-function connect-database () {
-
+function connect-database () { 
+    # QUELLE: https://vwiki.co.uk/MySQL_and_PowerShell
 }
 
 function close-database () {
