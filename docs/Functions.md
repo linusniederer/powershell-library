@@ -55,7 +55,7 @@ function create-credential-file (
 **Bemerkungen**
 Das Passwort muss in Klartext mitgegeben werden. Die Funktion erstellt nun eine Textdatei, welche bei anderen Funktionen verwendet werden kann.
 
-## 2. Benutzeroberfläche
+## 3. Benutzeroberfläche
 In diesem Abschnitt befinden sich Funktionen, mit welchen man Windows User Interfaces bauen kann.
 
 ### Funktion: create-form-window
