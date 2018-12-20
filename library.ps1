@@ -268,6 +268,46 @@ function connect-database ( $dbhost, $database, $user, $pass, $port) {
 
 }
 
-function close-database () {
+function read-database ( $connection, $sql ) {
+
+    # QUELLE: https://vwiki.co.uk/MySQL_and_PowerShell
+
+}
+
+function write-database ( $connection, $sql ) {
+
+    # Daten überprüfen
+    if ( $connection -ne $NULL -AND $sql -ne $NULL) {
+
+        # Neues Objekt erzeugen
+        $command = $connection.CreateCommand()
+        
+        # Zuweisen des SQL Queries
+        $command.CommandText = $sql                    
+
+        # Kommando ausführen
+        $insert = $command.ExecuteNonQuery()       
+        $command.Dispose() 
+                              
+        # Überprüfen ob es geklappt hat oder nicht
+        if ( $insert ) { 
+
+            # Rückgabe des Befehls
+            return $insert 
+
+        } else {
+            
+            # Rückgabe des Fehlers
+            return $false 
+        } 
+    
+    } else {
+        
+        # Wenn nicht alle Informationen ausgefüllt sind
+        return "ERROR: Fehlende Informationen für das Ausführen von Queries"
+
+    }
+
+    # QUELLE: https://vwiki.co.uk/MySQL_and_PowerShell
 
 }
