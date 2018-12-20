@@ -16,6 +16,13 @@ Liefert die Ip Adresse einer VM zurück, welche sich auf dem Host befindet.
 ```ps1
 function get-vm-ipaddress (
     -vmname "VM Name"
-    -type "IPv6 / IPv4"
+    -type   "IPv4 oder IPv6"
 )
 ```
+
+**Bemerkungen**
+
+Je nach dem welcher Typ gewählt wird, wird das IPv4 oder das IPv6 Protokoll zurückgegeben. Die Funktion liefert die IPaddresse als Variable zurück, weshalb es Sinn macht, die Funktion direkt in eine Variable zu speichern.
+
+## 2. Authentifizierung
+In diesem Abschnitt befinden sich funktionen, welche zusammen mit Hyper-V benutzt werden können.
