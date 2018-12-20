@@ -227,7 +227,7 @@ function write-log () {
 # --------------------------------------------------------
 #
 
-function connect-database ( $dbhost, $database, $user, $password, $port) { 
+function connect-database ( $dbhost, $database, $user, $pass, $port) { 
 
     # Objekt aus .Net Connector importieren
     [void][system.reflection.Assembly]::LoadWithPartialName("MySql.Data") 
@@ -238,14 +238,14 @@ function connect-database ( $dbhost, $database, $user, $password, $port) {
     $port = 3306
 
     # Überprüfen ob alle Angaben vorhanden
-    if ( $database -ne $NULL -AND $password -ne $NULL ) {
+    if ( $database -ne $NULL -AND $pass -ne $NULL ) {
 
         # Verbindungsinformationen
         $information = "
             server=$dbhost;
             port=$port;
             uid=$user;
-            pwd=$password;
+            pwd=$pass;
             database=$database;
             Pooling=FALSE
         " 
