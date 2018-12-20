@@ -270,6 +270,32 @@ function connect-database ( $dbhost, $database, $user, $pass, $port ) {
 
 function read-database ( $connection, $sql ) {
 
+    # Daten überprüfen
+    if ( $connection -ne $NULL -AND $sql -ne $NULL) {
+
+        # Neues Objekt erzeugen
+        $command = New-Object MySql.Data.MySqlClient.MySqlCommand($sql, $connection) 
+
+        # Adapter erzugen
+        $dataadapter = New-Object MySql.Data.MySqlClient.MySqlDataAdapter($command)  
+
+        # Daten zusammenstellen
+        $dataset = New-Object System.Data.DataSet
+        $dataadapter.Fill($dataset, "data")   
+
+        # Objekt Schliessen
+        $command.Dispose()
+
+        # Rückgabe der Daten
+        return $dataset.Tables["data"]  
+
+    } else {
+        
+        # Wenn nicht alle Informationen ausgefüllt sind
+        return "ERROR: Fehlende Informationen für das Ausführen von Queries"
+    
+    }
+    
     # QUELLE: https://vwiki.co.uk/MySQL_and_PowerShell
 
 }
