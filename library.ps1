@@ -18,19 +18,19 @@
 
 function get-vm-ipaddress ( $vmname, $type ) {
 
-    # get IPv4 Address
+    # IPv4 Adresse laden
     if ( $type -eq "ipv4" -or $type -eq 4 ) {
         $network = ( GEt-VM -VMName $vmname | Get-VMNetworkAdapter).IpAddresses | Select-String -List 1;
         $ipaddress = $network[0]
     } 
 
-    # get IPv6 Address
+    # IPv6 Adresse laden
     if ( $type -eq "ipv6" -or $type -eq 6 ) {
         $network = ( GEt-VM -VMName $vmname | Get-VMNetworkAdapter).IpAddresses | Select-String -List 1;
         $ipaddress = $network[1]
     } 
 
-    # if type empty -> IPv4
+    # Wenn $type = $NULL dann IPv4
     else {
         $network = ( GEt-VM -VMName $vmname | Get-VMNetworkAdapter).IpAddresses | Select-String -List 1;
         $ipaddress = $network[0]
@@ -41,19 +41,19 @@ function get-vm-ipaddress ( $vmname, $type ) {
 
 #
 # --------------------------------------------------------
-# Abschnitt: AUTHENTICATION
+# Abschnitt: AUTHENTIFIZIERUNG
 # --------------------------------------------------------
 #
 
 function create-credential ( $user, $domain, $password, $securefile ) {
 
-    # if there is a securefile to use
+    # Passwort befindet sich in Sicherheitsdatei
     if ( $securefile -ne $NULL ) { 
         
         $credential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList "$domain\$user", (Get-Content $securefile | ConvertTo-SecureString) 
     }
 
-    # if ithere ist a clear password to use
+    # Passwort in Klartext verwendent
     if ( $password -ne $NULL ) { 
     
         $securepw = ConvertTo-SecureString $password -AsPlainText -Force
@@ -73,27 +73,27 @@ function create-credential-file ( $password, $filepath )  {
 
 #
 # --------------------------------------------------------
-# Abschnitt: USER INTERFACE
+# Abschnitt: BENUTZEROBERFLÄCHE
 # --------------------------------------------------------
 #
 
 function create-form-window ($text, $bgcolor, $startposition, $icon, $maximize, $height, $width ) {
     
-    # init form moduls
+    # Module installieren
     [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Drawing")
     [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")
 
-    # standard options if $param = NULL  
+    # Standardoptionen wenn $param = NULL  
     if ( $bgcolor -eq $NULL )        { $bgcolor = "white" }
     if ( $startposition -eq $NULL )  { $startposition = "centerscreen" }
     if ( $maximize -eq $NULL )       { $maximize = $false }
     if ( $height -eq $NULL )         { $height = 400 }
     if ( $width -eq $NULL )          { $width = 800 }
 
-    # create form object
+    # Form Objekt erzeugen
     $form = New-Object System.Windows.Forms.Form
 
-    # set form options
+    # Optionen Objekt zuweisen
     $form.text              = $text
     $form.backcolor         = $bgcolor
     $form.startposition     = $startposition
@@ -109,10 +109,10 @@ function create-form-window ($text, $bgcolor, $startposition, $icon, $maximize, 
 
 function create-form-object ( $form, $type, $text, $value, $height, $width, $autosize, $enabled, $color, $bgcolor, $font, $imagepath, $xpos, $ypos, $click, $dynamic ) {
     
-    # check for errors
+    # Standardoptionen Form
     if ($form -eq $NULL ) { $form = create-form-window -height 400 -width 800 -bgcolor "white" -startposition "centerscreen" -text "Generated!!!" }
 
-    # standard options if $param = NULL  
+    # Standardoptionen $param = NULL  
     if ( $type -eq $NULL )     { $type = "label" }
     if ( $autosize -eq $NULL ) { $autosize = $true }
     if ( $color -eq $NULL )    { $color = "black" }
@@ -120,13 +120,13 @@ function create-form-object ( $form, $type, $text, $value, $height, $width, $aut
     if ( $enabled -eq $NULL )  { $enabled = $true }
     if ( $dynamic -eq $NULL )  { $dynamic = $false }
 
-    # get type of object
+    # Type des Objektes bestimmen
     if ( $type -eq "textbox" )  { $object = New-Object System.Windows.Forms.TextBox }
     if ( $type -eq "label" )    { $object = New-Object System.Windows.Forms.Label }
     if ( $type -eq "button" )   { $object = New-Object System.Windows.Forms.Button }
     if ( $type -eq "checkbox" ) { $object = New-Object System.Windows.Forms.Checkbox }
 
-    # special type
+    # Spzial Typen
     if ( $type -eq "picturebox" )  { 
         $object = New-Object System.Windows.Forms.PictureBox 
         $object.ImageLocation = $imagepath
@@ -137,7 +137,7 @@ function create-form-object ( $form, $type, $text, $value, $height, $width, $aut
         $object.value  = $value
     }
 
-    # set object options
+    # Optionen dem Objekt zuweisen
     $object.text        = $text
     $object.height      = $height
     $object.width       = $width
@@ -148,16 +148,16 @@ function create-form-object ( $form, $type, $text, $value, $height, $width, $aut
     $object.font        = $font
     $object.location    = New-Object System.Drawing.Point( $xpos, $ypos )
 
-    # set object events
+    # Events bestimmen
     $object.add_click( $click )
 
-    # if dynamic = $false --> return Form
+    # Dynamische Objekte erzeugen
     if ( $dynamic -eq $false ) {
         $form.Controls.Add( $object )
         return $form
     } 
     
-    # if dynamic = $false --> return Object
+    # kein Dynamisches Objekt
     if ( $dynamic -eq $true ) {
         return $object
     }
@@ -167,7 +167,7 @@ function create-form-object ( $form, $type, $text, $value, $height, $width, $aut
 
 function create-file-dialog ( $path, $filetype ) {
     
-    # standard options if $param = NULL  
+    # Standardoptionen $param = NULL  
     if ( $path -eq $NULL )     { $path = "C:\" }
     if ( $filetype -eq $NULL ) { $filetype = 'Alle Dateien (*.*)|*.*"."'}
 
@@ -183,17 +183,13 @@ function create-file-dialog ( $path, $filetype ) {
 
 #
 # --------------------------------------------------------
-# Abschnitt: REPORTING
+# Abschnitt: LOGGEN
 # --------------------------------------------------------
 #
 
 function write-log () {
     
-    #   $scp = $PSScriptRoot
-    #   $tsp = Get-Date -UFormat "%Y-%m-%d"
-    #   $fin = $MyInvocation.ScriptName
-
-    # init log
+    # log initialisieren
     $text = $args[0]
     $logpath = $Global:scp 
     $logtime = $Global:tsp
@@ -202,32 +198,32 @@ function write-log () {
     $color = "white"
     $time = Get-Date -DisplayHint time
 
-    # ERROR found
+    # Fehler gefunden
     if ( $text -like "*ERROR*" -OR $text -like "*FEHLER*" ) { $color = "red" }
     
-    # WARNING found
+    # Wahrnung gefunden
     if ( $text -like "*WARNING*" -OR $text -like "*WARNUNG*" ) { $color = "yellow" }
 
     if ( Get-Item -Path $logfile -ErrorAction SilentlyContinue ) {
         
-        # log existing
+        # log existiert bereits
         "$time > $text" | Add-Content $logfile
 
     } else {
 
-        # create new log
+        # neues Log erstellen
         New-Item -Path $logfile -Force
         "$time > $text" | Add-Content $logfile
     }
 
-    # screenoutput
+    # in Terminal ausgeben
     Write-Host "$time > $text" -ForegroundColor $color
        
 }
 
 #
 # --------------------------------------------------------
-# Abschnitt: DATABASES
+# Abschnitt: DATENBANKEN
 # --------------------------------------------------------
 #
 
