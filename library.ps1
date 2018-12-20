@@ -227,8 +227,45 @@ function write-log () {
 # --------------------------------------------------------
 #
 
-function connect-database () { 
+function connect-database ( $dbhost, $database, $user, $password, $port) { 
+
+    # Objekt aus .Net Connector importieren
+    [void][system.reflection.Assembly]::LoadWithPartialName("MySql.Data") 
+
+    # Standardoptionen
+    $dbhost = "localhost"
+    $user = "root"
+    $port = 3306
+
+    # Überprüfen ob alle Angaben vorhanden
+    if ( $database -ne $NULL -AND $password -ne $NULL ) {
+
+        # Verbindungsinformationen
+        $information = "
+            server=$dbhost;
+            port=$port;
+            uid=$user;
+            pwd=$password;
+            database=$database;
+            Pooling=FALSE
+        " 
+        
+        # Verbindung herstellen
+        $connection = New-Object MySql.Data.MySqlClient.MySqlConnection($information) 
+        $connection.Open() 
+
+        # Verbindungsvariable zurückgben
+        return $connection 
+    
+    } else {
+        
+        # Wenn nicht alle Informationen ausgefüllt sind
+        return "ERROR: Fehlende Verbindungsinformationen"
+
+    }
+    
     # QUELLE: https://vwiki.co.uk/MySQL_and_PowerShell
+
 }
 
 function close-database () {
