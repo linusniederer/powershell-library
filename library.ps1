@@ -162,7 +162,6 @@ function create-form-object ( $form, $type, $text, $value, $height, $width, $aut
         return $object
     }
     
-
 }
 
 function create-file-dialog ( $path, $filetype ) {
