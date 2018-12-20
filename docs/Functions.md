@@ -14,5 +14,8 @@ In diesem Abschnitt befinden sich funktionen, welche zusammen mit Hyper-V benutz
 Liefert die Ip Adresse einer VM zurück, welche sich auf dem Host befindet.
 
 ```ps1
-get-vm-ipaddress -vmname "VM Name" -type "IPv6 / IPv4"
+function get-vm-ipaddress (
+    -vmname "VM Name"
+    -type "IPv6 / IPv4"
+)
 ```
