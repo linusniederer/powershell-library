@@ -11,4 +11,17 @@ Mit folgendem Code kann die Library dann eingebunden werden:
 .[Pfad]\library.ps1
 ```
 
+Damit alle Funktionen richtig verwendet werden können ist es wichtig, dass folgende Variabeln am Anfang definiert werden. Deshlab lohnt es sich, folgenden Skriptteil direkt hineinzukopieren.
+
+```ps1
+$scp      = $PSScriptRoot
+$tsp      = Get-Date -UFormat "%Y-%m-%d"
+$fin      = $MyInvocation.ScriptName
+
+$url      = "https://github.com/linusniederer/powershell-library/blob/master/library.ps1"
+$library  = "$scp\library.ps1"
+
+."$library"
+```
+
 Nun können die Funktionen im Projekt verwendet werden. Eine Übersicht aller Funktionen findet man im Ordner \docs\functions.md
