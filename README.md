@@ -10,3 +10,5 @@ Mit folgendem Code kann die Library dann eingebunden werden:
 ```ps1
 .[Pfad]\library.ps1
 ```
+
+Nun können die Funktionen im Projekt verwendet werden. Eine Übersicht aller Funktionen findet man im Ordner \docs\functions.md
