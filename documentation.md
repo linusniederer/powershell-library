@@ -24,7 +24,7 @@ function get-vm-ipaddress (
 Je nach dem welcher Typ gewählt wird, wird das IPv4 oder das IPv6 Protokoll zurückgegeben. Die Funktion liefert die IPaddresse als Variable zurück, weshalb es Sinn macht, die Funktion direkt in eine Variable zu speichern.
 
 **Verwendung** <br>
-Ein Beispiel zur Verwendung dieser Funktion findest du hier:
+Ein Beispiel zur Verwendung dieser Funktion findest du hier: <br>
 https://github.com/linusniederer/powershell-library/blob/master/examples/get-vm-ipaddress.ps1
 
 ## 2. Authentifizierung
@@ -46,7 +46,7 @@ function create-credential (
 Das Passwort kann in Klartext oder auch in Form eines Sicherheitsfiles mitgegeben werden.
 
 **Verwendung** <br>
-Ein Beispiel zur Verwendung dieser Funktion findest du hier:
+Ein Beispiel zur Verwendung dieser Funktion findest du hier: <br>
 https://github.com/linusniederer/powershell-library/blob/master/examples/create-credential.ps1
 
 ### Funktion: create-credential-file
@@ -63,7 +63,7 @@ function create-credential-file (
 Das Passwort muss in Klartext mitgegeben werden. Die Funktion erstellt nun eine Textdatei, welche bei anderen Funktionen verwendet werden kann.
 
 **Verwendung** <br>
-Ein Beispiel zur Verwendung dieser Funktion findest du hier:
+Ein Beispiel zur Verwendung dieser Funktion findest du hier: <br>
 https://github.com/linusniederer/powershell-library/blob/master/examples/create-credential-file.ps1
 
 ## 3. Benutzeroberfläche
@@ -88,7 +88,7 @@ function create-form-window (
 Die gesammte Funktion muss in eine Variable gespeichert werden, damit sie später mit dem `ShowDialog()` angezeigt werden kann.
 
 **Verwendung** <br>
-Ein Beispiel zur Verwendung dieser Funktion findest du hier:
+Ein Beispiel zur Verwendung dieser Funktion findest du hier: <br>
 https://github.com/linusniederer/powershell-library/blob/master/examples/create-form-window.ps1
 
 ### Funktion: create-form-object
@@ -119,5 +119,5 @@ function create-form-object (
 Wird der Wert von `-dynamic` auf `$true` so liefert die Funktion ein Objekt zurück, welches im Skript weiter bearbeitet werden kann. Dies macht dann Sinn, wenn sich Text zum Beispiel von Buttons oder Labels ändern.
 
 **Verwendung** <br>
-Ein Beispiel zur Verwendung dieser Funktion findest du hier:
+Ein Beispiel zur Verwendung dieser Funktion findest du hier: <br>
 https://github.com/linusniederer/powershell-library/blob/master/examples/create-form-object.ps1
