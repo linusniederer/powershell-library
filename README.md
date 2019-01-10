@@ -11,6 +11,9 @@ Mit folgendem Code kann die Library dann eingebunden werden:
 Import-Module [Pfad]\library.psm1
 ```
 
+Weitere Informationen zum Importieren von PowerShell Modulen findet man auf der Seite von Microsoft:
+https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/import-module?view=powershell-6
+
 Damit alle Funktionen richtig verwendet werden können ist es wichtig, dass folgende Variabeln am Anfang definiert werden. Deshlab lohnt es sich, folgenden Skriptteil direkt hineinzukopieren.
 
 ```ps1
