@@ -158,3 +158,60 @@ Diese Funktion erstellt einen Ordner auf der Rootebene mit dem Namen Log. Meldun
 **Verwendung** <br>
 Ein Beispiel zur Verwendung dieser Funktion findest du hier: <br>
 https://github.com/linusniederer/powershell-library/blob/master/examples/write-log.ps1
+
+## 5. Datenbanken
+In diesem Abschnitt befinden sich Funktionen, welche in Verbindung mit Datenbanken verwendet werden können. Damit diese Funktionen verwendet werden können, muss ein Datenbank-Connector installiert sein. 
+
+### Funktion: connect-database
+Erstellt die Verbindung zur Datenbank. Diese Funktion muss in eine Variable umgeleitet werden.
+
+```ps1
+function connect-database (
+    -dbbost     "Datenbank Host"
+    -database   "Name der Datenbank"
+    -user       "Benutzername"
+    -pass       "Passwort"
+    -port       "Port für die Verbindung"
+)
+```
+
+**Bemerkungen** <br>
+Diese Funktion sollte in eine Variable geschrieben werden, damit sie für das Lesen und Schreiben von Daten verwendet werden kann.
+
+**Verwendung** <br>
+Ein Beispiel zur Verwendung dieser Funktion findest du hier: <br>
+https://github.com/linusniederer/powershell-library/blob/master/examples/connect-database.ps1<>
+
+### Funktion: read-database
+Nutzt die bestehende Verbindung zur Datenbank um per SQL Statement einen Read-Befehl auszuführen.
+
+```ps1
+function read-database (
+    -connection     "Verbindungsvariable"
+    -sql            "Auszuführender SQL Code"
+)
+```
+
+**Bemerkungen** <br>
+Mit dieser Funktion können nur Daten gelesen werden!
+
+**Verwendung** <br>
+Ein Beispiel zur Verwendung dieser Funktion findest du hier: <br>
+https://github.com/linusniederer/powershell-library/blob/master/examples/read-database.ps1
+
+### Funktion: write-database
+Nutzt die bestehende Verbindung zur Datenbank um per SQL Statement einen Write-Befehl auszuführen.
+
+```ps1
+function write-database (
+    -connection     "Verbindungsvariable"
+    -sql            "Auszuführender SQL Code"
+)
+```
+
+**Bemerkungen** <br>
+Mit dieser Funktion können nur Daten geschrieben werden!
+
+**Verwendung** <br>
+Ein Beispiel zur Verwendung dieser Funktion findest du hier: <br>
+https://github.com/linusniederer/powershell-library/blob/master/examples/write-database.ps1<>
