@@ -121,3 +121,21 @@ Wird der Wert von `-dynamic` auf `$true` so liefert die Funktion ein Objekt zur�
 **Verwendung** <br>
 Ein Beispiel zur Verwendung dieser Funktion findest du hier: <br>
 https://github.com/linusniederer/powershell-library/blob/master/examples/create-form-object.ps1
+
+### Funktion: create-file-dialog
+Öffnet den FileDialog von Windows und liefert einen Pfad oder eine Datei zurück.
+
+```ps1
+function create-file-dialog (
+    -path       "Startpfad"
+    -filetype   "Filter für die Dateien"
+)
+```
+
+**Bemerkungen** <br>
+Standardmässig ist der Startpfad auf C:\ gesetzt. Filetypes sind Standardmässig alle Erlaubt. Weitere Filter für den WindowsFileDialog findet man hier: <br>
+https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.filedialog.filter?view=netframework-4.7.2
+
+**Verwendung** <br>
+Ein Beispiel zur Verwendung dieser Funktion findest du hier: <br>
+https://github.com/linusniederer/powershell-library/blob/master/examples/create-file-dialog.ps1
