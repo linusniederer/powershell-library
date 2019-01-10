@@ -24,5 +24,7 @@ $fin      = $MyInvocation.ScriptName
 $url      = "https://github.com/linusniederer/powershell-library/blob/master/library.psm1"
 ```
 
-Nun können die Funktionen im Projekt verwendet werden. Eine Übersicht aller Funktionen findet man hier:
+Nun können die Funktionen im Projekt verwendet werden. Eine Übersicht aller Funktionen findet man hier: <br>
 https://github.com/linusniederer/powershell-library/blob/master/functions.md
+
+Für alle Funktionen, welche mit Datenbanken arbeiten, ist es notwendig, dass ein Connector installiert wurde. Den Connector für MySql findet man im Ordner `external`.
