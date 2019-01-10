@@ -25,7 +25,7 @@ Je nach dem welcher Typ gewählt wird, wird das IPv4 oder das IPv6 Protokoll zur
 
 **Verwendung** <br>
 Ein Beispiel zur Verwendung dieser Funktion findest du hier:
-
+https://github.com/linusniederer/powershell-library/blob/master/examples/get-vm-ipaddress.ps1
 
 ## 2. Authentifizierung
 Mit Hilfe dieser Funktionen können so genannte Credentials erstellt werden, welche in PowerShell Skripts verwendet werden können.
@@ -45,6 +45,10 @@ function create-credential (
 **Bemerkungen** <br>
 Das Passwort kann in Klartext oder auch in Form eines Sicherheitsfiles mitgegeben werden.
 
+**Verwendung** <br>
+Ein Beispiel zur Verwendung dieser Funktion findest du hier:
+https://github.com/linusniederer/powershell-library/blob/master/examples/create-credential.ps1
+
 ### Funktion: create-credential-file
 Mit Hilfe dieser Funktion kann ein Passwort einmalig in ein Sicherheitsfile gespeichert werden. Dies macht Sinn, wenn das Passwort nicht in Klartext mitgegeben werden soll.
 
@@ -57,6 +61,10 @@ function create-credential-file (
 
 **Bemerkungen** <br>
 Das Passwort muss in Klartext mitgegeben werden. Die Funktion erstellt nun eine Textdatei, welche bei anderen Funktionen verwendet werden kann.
+
+**Verwendung** <br>
+Ein Beispiel zur Verwendung dieser Funktion findest du hier:
+https://github.com/linusniederer/powershell-library/blob/master/examples/create-credential-file.ps1
 
 ## 3. Benutzeroberfläche
 In diesem Abschnitt befinden sich Funktionen, mit welchen man Windows User Interfaces bauen kann.
@@ -78,6 +86,10 @@ function create-form-window (
 
 **Bemerkungen** <br>
 Die gesammte Funktion muss in eine Variable gespeichert werden, damit sie später mit dem `ShowDialog()` angezeigt werden kann.
+
+**Verwendung** <br>
+Ein Beispiel zur Verwendung dieser Funktion findest du hier:
+https://github.com/linusniederer/powershell-library/blob/master/examples/create-form-window.ps1
 
 ### Funktion: create-form-object
 Erstellt ein Objekt auf einem GUI welches zuvor erstellt wurde.
@@ -105,3 +117,7 @@ function create-form-object (
 
 **Bemerkungen** <br>
 Wird der Wert von `-dynamic` auf `$true` so liefert die Funktion ein Objekt zurück, welches im Skript weiter bearbeitet werden kann. Dies macht dann Sinn, wenn sich Text zum Beispiel von Buttons oder Labels ändern.
+
+**Verwendung** <br>
+Ein Beispiel zur Verwendung dieser Funktion findest du hier:
+https://github.com/linusniederer/powershell-library/blob/master/examples/create-form-object.ps1
