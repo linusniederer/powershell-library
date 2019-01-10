@@ -139,3 +139,22 @@ https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.filedialog.filt
 **Verwendung** <br>
 Ein Beispiel zur Verwendung dieser Funktion findest du hier: <br>
 https://github.com/linusniederer/powershell-library/blob/master/examples/create-file-dialog.ps1
+
+## 4. Loggen
+In diesem Abschnitt befinden sich Funktionen, mit welchen Rückmeldungen geloggt werden können.
+
+### Funktion: write-log
+Schreibt ein Log-File und gibt die Meldung in der Konsole aus.
+
+```ps1
+function write-log (
+
+)
+```
+
+**Bemerkungen** <br>
+Diese Funktion erstellt einen Ordner auf der Rootebene mit dem Namen Log. Meldungen welche den Namen ERROR oder WARNING enthalten werden Farblich markiert.
+
+**Verwendung** <br>
+Ein Beispiel zur Verwendung dieser Funktion findest du hier: <br>
+https://github.com/linusniederer/powershell-library/blob/master/examples/write-log.ps1
