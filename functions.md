@@ -20,9 +20,12 @@ function get-vm-ipaddress (
 )
 ```
 
-**Bemerkungen**
-
+**Bemerkungen** <br>
 Je nach dem welcher Typ gewählt wird, wird das IPv4 oder das IPv6 Protokoll zurückgegeben. Die Funktion liefert die IPaddresse als Variable zurück, weshalb es Sinn macht, die Funktion direkt in eine Variable zu speichern.
+
+**Verwendung** <br>
+Ein Beispiel zur Verwendung dieser Funktion findest du hier:
+
 
 ## 2. Authentifizierung
 Mit Hilfe dieser Funktionen können so genannte Credentials erstellt werden, welche in PowerShell Skripts verwendet werden können.
@@ -39,7 +42,7 @@ function create-credential (
 )
 ```
 
-**Bemerkungen**
+**Bemerkungen** <br>
 Das Passwort kann in Klartext oder auch in Form eines Sicherheitsfiles mitgegeben werden.
 
 ### Funktion: create-credential-file
@@ -52,7 +55,7 @@ function create-credential-file (
 )
 ```
 
-**Bemerkungen**
+**Bemerkungen** <br>
 Das Passwort muss in Klartext mitgegeben werden. Die Funktion erstellt nun eine Textdatei, welche bei anderen Funktionen verwendet werden kann.
 
 ## 3. Benutzeroberfläche
@@ -73,5 +76,32 @@ function create-form-window (
 )
 ```
 
-**Bemerkungen**
-Die gesammte Funktion muss in eine Variable gespeichert werden, damit sie später mit dem `ShowDialog()` angezeigt werden kann
+**Bemerkungen** <br>
+Die gesammte Funktion muss in eine Variable gespeichert werden, damit sie später mit dem `ShowDialog()` angezeigt werden kann.
+
+### Funktion: create-form-object
+Erstellt ein Objekt auf einem GUI welches zuvor erstellt wurde.
+
+```ps1
+function create-form-object (
+    -form       "Variable des form-window"
+    -type       "textbox, label, button, checkbox, picturebox, progressbar"
+    -text       "Text"
+    -value      "Wert"
+    -height     "Höhe"
+    -widht      "Breiete"
+    -autosize   "Automatische Grösse"
+    -enabled    "Aktiviert oder nicht"
+    -color      "Farbe"
+    -bgcolor    "Hintergrundfarbe"
+    -font       "Schriftart und Grösse"
+    -imagepath  "Pfad zum Bild"
+    -xpos       "Abstand von oben"
+    -ypos       "Abstand von links"
+    -click      "Funktion welche beim Click ausgeführt wird"
+    -dynamic    "Dynamische Rückgabe"
+)
+```
+
+**Bemerkungen** <br>
+Wird der Wert von `-dynamic` auf `$true` so liefert die Funktion ein Objekt zurück, welches im Skript weiter bearbeitet werden kann. Dies macht dann Sinn, wenn sich Text zum Beispiel von Buttons oder Labels ändern.
