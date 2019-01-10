@@ -21,4 +21,5 @@ $fin      = $MyInvocation.ScriptName
 $url      = "https://github.com/linusniederer/powershell-library/blob/master/library.psm1"
 ```
 
-Nun können die Funktionen im Projekt verwendet werden. Eine Übersicht aller Funktionen findet man im Ordner \docs\functions.md
+Nun können die Funktionen im Projekt verwendet werden. Eine Übersicht aller Funktionen findet man hier:
+https://github.com/linusniederer/powershell-library/blob/master/functions.md
