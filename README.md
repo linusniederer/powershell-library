@@ -3,12 +3,12 @@ Dieses Projekt beinhaltet eine Bibliothek für die Skriptssprache Powershell. En
 
 
 ### Einbinden der Bibliothek
-Sobald die Datei «library.ps1» heruntergeladen worden ist, muss sie der Ordnerstruktur des Projektes hinzugefügt werden. 
+Sobald die Datei «library.psm1 heruntergeladen worden ist, kann sie auf dem System eingebunden werden.
 
 Mit folgendem Code kann die Library dann eingebunden werden:
 
 ```ps1
-.[Pfad]\library.ps1
+Import-Module [Pfad]\library.psm1
 ```
 
 Damit alle Funktionen richtig verwendet werden können ist es wichtig, dass folgende Variabeln am Anfang definiert werden. Deshlab lohnt es sich, folgenden Skriptteil direkt hineinzukopieren.
@@ -18,10 +18,7 @@ $scp      = $PSScriptRoot
 $tsp      = Get-Date -UFormat "%Y-%m-%d"
 $fin      = $MyInvocation.ScriptName
 
-$url      = "https://github.com/linusniederer/powershell-library/blob/master/library.ps1"
-$library  = "$scp\library.ps1"
-
-."$library"
+$url      = "https://github.com/linusniederer/powershell-library/blob/master/library.psm1"
 ```
 
 Nun können die Funktionen im Projekt verwendet werden. Eine Übersicht aller Funktionen findet man im Ordner \docs\functions.md
