@@ -1,7 +1,7 @@
 # PowerShell Library for daily use
 Dieses Projekt beinhaltet eine Library für die Skriptssprache PowerShell.
 
-### Einbinden der Bibliothek (Automatisch)
+### Einbinden der Bibliothek (automatisch)
 Mit foglendem Code kann die Library direkt in jedes PowerShell Projekt eingebunden werden:
 
 ```ps1
@@ -20,7 +20,7 @@ New-Item -path $librarypath -ItemType "file" -Force
 ```
 Das Script lädt automatisch die aktuellste Version der Library herunter und speichert sie in den Unterordner /lib. Dieses Code Snippte sollte vor jedem Script eingefügt werden. So hat man den Vorteil, dass immer die aktuellste Version der Library verwendet wird.
 
-### Einbinden der Bibliothek (Manuell)
+### Einbinden der Bibliothek (manuell)
 Sobald die Datei «library.psm1 heruntergeladen worden ist, kann sie auf dem System eingebunden werden.
 
 Mit folgendem Code kann die Library dann eingebunden werden:
