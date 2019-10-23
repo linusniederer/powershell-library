@@ -1,8 +1,26 @@
 # PowerShell Library for daily use
-Dieses Projekt beinhaltet eine Bibliothek für die Skriptssprache Powershell. Entscheidend ist die Datei «library.ps1».
+Dieses Projekt beinhaltet eine Library für die Skriptssprache PowerShell.
 
+### Einbinden der Bibliothek (Automatisch)
+Mit foglendem Code kann die Library direkt in jedes PowerShell Projekt eingebunden werden:
 
-### Einbinden der Bibliothek
+```ps1
+$scp            = $PSScriptRoot
+$tsp            = Get-Date -UFormat "%Y-%m-%d"
+$fin            = $MyInvocation.ScriptName
+
+$libraryname    = "ps-library-v1.0.ps1"
+$librarypath    = "$scp/lib/$libraryname"
+$libraryurl     = "https://raw.githubusercontent.com/linusniederer/powershell-library/master/library.psm1"
+$libraryrequest = Invoke-WebRequest -uri $url
+
+New-Item -path $librarypath -ItemType "file" -Force
+
+."$librarypath"
+```
+Das Script lädt automatisch die aktuellste Version der Library herunter und speichert sie in den Unterordner /lib. Dieses Code Snippte sollte vor jedem Script eingefügt werden. So hat man den Vorteil, dass immer die aktuellste Version der Library verwendet wird.
+
+### Einbinden der Bibliothek (Manuell)
 Sobald die Datei «library.psm1 heruntergeladen worden ist, kann sie auf dem System eingebunden werden.
 
 Mit folgendem Code kann die Library dann eingebunden werden:
@@ -24,7 +42,8 @@ $fin      = $MyInvocation.ScriptName
 $url      = "https://github.com/linusniederer/powershell-library/blob/master/library.psm1"
 ```
 
-Nun können die Funktionen im Projekt verwendet werden. Eine Übersicht aller Funktionen findet man hier: <br>
+### Weitere Informationen
+Eine Übersicht aller Funktionen findet man hier: <br>
 https://github.com/linusniederer/powershell-library/blob/master/functions.md
 
 Für alle Funktionen, welche mit Datenbanken arbeiten, ist es notwendig, dass ein Connector installiert wurde. Den Connector für MySql findet man im Ordner `external`.
