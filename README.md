@@ -44,6 +44,6 @@ $url      = "https://github.com/linusniederer/powershell-library/blob/master/lib
 
 ### Weitere Informationen
 Eine Übersicht aller Funktionen findet man hier: <br>
-https://github.com/linusniederer/powershell-library/blob/master/functions.md
+https://github.com/linusniederer/powershell-library/blob/master/documentation.md
 
 Für alle Funktionen, welche mit Datenbanken arbeiten, ist es notwendig, dass ein Connector installiert wurde. Den Connector für MySql findet man im Ordner `external`.
