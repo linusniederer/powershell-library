@@ -12,7 +12,7 @@ $fin            = $MyInvocation.ScriptName
 $libraryname    = "ps-library-v1.0.ps1"
 $librarypath    = "$scp/lib/$libraryname"
 $libraryurl     = "https://raw.githubusercontent.com/linusniederer/powershell-library/master/library.psm1"
-$libraryrequest = Invoke-WebRequest -uri $url
+$libraryrequest = Invoke-WebRequest -uri $libraryurl
 
 New-Item -path $librarypath -ItemType "file" -Force
 
