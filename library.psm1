@@ -1,13 +1,10 @@
 ﻿#
-# Powershell Skript by LINUS
+# PowerShell library
+# This library contains some PowerShell functions which are needed in everyday programming.
 # 
-# 26.10.2018
-#
-# Dies ist eine Library für bestimmte Powershell Funktionen welche
-# in weitere Skritps eingebunden werden kann.
-#
-# Die Library darf verwendet und abgeändert werden.
-#
+# author: @https://github.com/linusniederer
+# repository: @https://github.com/linusniederer/powershell-library
+# documentation: @https://github.com/linusniederer/powershell-library/blob/master/documentation.md
 #
 
 #
