@@ -2,26 +2,29 @@
 # PowerShell library
 # This library contains some PowerShell functions which are needed in everyday programming.
 # 
-# author: @https://github.com/linusniederer
-# repository: @https://github.com/linusniederer/powershell-library
-# documentation: @https://github.com/linusniederer/powershell-library/blob/master/documentation.md
+# Author: @https://github.com/linusniederer
+# Repository: @https://github.com/linusniederer/powershell-library
+# Documentation: @https://github.com/linusniederer/powershell-library/blob/master/documentation.md
 #
 
 #
-# --------------------------------------------------------
-# Abschnitt: HYPER-V MANAGEMENT
-# --------------------------------------------------------
+# Functions to get special information about virtual machines running on Windows Hyper-v
+# Example: @https://github.com/linusniederer/powershell-library/blob/master/examples/get-vm-ipaddress.ps1
 #
-
 function get-vm-ipaddress ( $vmname, $type ) {
 
-    # IPv4 Adresse laden
+    # 
+    # Check if ipv4 is requested
+    # Loads the ipv4 address from the virtual network adapter object
+    #
     if ( $type -eq "ipv4" -or $type -eq 4 ) {
-        $network = ( GEt-VM -VMName $vmname | Get-VMNetworkAdapter).IpAddresses | Select-String -List 1;
+        $network = ( Get-VM -VMName $vmname | Get-VMNetworkAdapter).IpAddresses | Select-String -List 1;
         $ipaddress = $network[0]
     } 
 
-    # IPv6 Adresse laden
+    #
+    #
+    #
     if ( $type -eq "ipv6" -or $type -eq 6 ) {
         $network = ( GEt-VM -VMName $vmname | Get-VMNetworkAdapter).IpAddresses | Select-String -List 1;
         $ipaddress = $network[1]
