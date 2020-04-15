@@ -6,6 +6,7 @@ class Database {
     [string] $databaseUser
     [string] $databasePassword
     [int] $databasePort
+    [object] $databaseConnection
 
     <# Initialize Constructor #>
     Database ( $dbHost, $dbName, $dbUser, $dbPass, $dbPort ) {
@@ -36,12 +37,21 @@ class Database {
         $connection.Open() 
 
         <# Return Connection as Object #>
+        $this.databaseConnection = $connection
         return $connection
     } 
 
     <# Initialize Database Input #>
-    [object] insert () {
+    [object] insert ( $sql ) {
         
+        <# Create new Object #>
+        $command = $this.databaseConnection.CreateCommand()
+        $command.CommandText = $sql 
+        $insert = $command.ExecuteNonQuery()       
+        $command.Dispose() 
+
+        <# Return Connection as Object #>
+        return $insert
     }
 
 }
