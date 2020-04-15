@@ -53,5 +53,4 @@ class Database {
         <# Return Connection as Object #>
         return $insert
     }
-
 }
