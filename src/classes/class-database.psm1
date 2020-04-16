@@ -1,40 +1,47 @@
 class Database {
 
-    [string] $databaseHost
-    [string] $databaseName
-    [string] $databaseUser
-    [string] $databasePassword
-    [int] $databasePort
-    [object] $databaseConnection
+    [string] $dbHost
+    [string] $dbName
+    [string] $dbUser
+    hidden [string] $dbPass
+    [int] $dbPort = 3306
+    [object] $dbConnection
 
-    <##       
-        [parameter] $dbHost Name or IP Address of the Database Host
-        [parameter] $dbName Name of the Database
-        [parameter] $dbUser Username of the Database user
-        [parameter] $dbPass Password of the Database user in clear text
-        [parameter] $dbPort Port to connect to Database Host
-    #>
-    Database ( $dbHost, $dbName, $dbUser, $dbPass, $dbPort ) {
-        $this.databaseHost = $dbHost
-        $this.databaseName = $dbName
-        $this.databaseUser = $dbUser
-        $this.databasePassword = $dbPass
-        $this.databasePort = $dbPort
+    <# DOC: Constructor of database class #>
+    Database ( $dbHost, $dbName, $dbUser, $dbPass ) {
+        $this.initialize( $dbHost, $dbName, $dbUser, $dbPass )
     }
 
-    <# Initialize Database Connection #>
-    [object] connect () {
+    <# DOC: Constructor of database class with direct connection #>
+    Database ( $dbHost, $dbName, $dbUser, $dbPass, [boolean] $connect ) {
+        $this.initialize( $dbHost, $dbName, $dbUser, $dbPass )
+        
+        if ( $connect -eq $true) { 
+            $this.connect() 
+        }
+    }
+
+    <# INIT Method to overload constructors #>
+    hidden initialize ( $dbHost, $dbName, $dbUser, $dbPass ) {
+        $this.dbHost = $dbHost
+        $this.dbName = $dbName
+        $this.dbUser = $dbUser
+        $this.dbPass = $dbPass
+    }
+
+    <# DOC: Method to create connection object #>
+    [string] connect () {
 
         # Import MySql Connector from .Net Framework
         [void][system.reflection.Assembly]::LoadWithPartialName("MySql.Data") 
 
         <# Collect Server Informations #>
         $connectionInformation = "
-            server="    + $this.databaseHost + ";
-            port="      + $this.databasePort + ";
-            uid="       + $this.databaseUser + ";
-            pwd="       + $this.databasePassword + ";
-            database="  + $this.databaseName + ";
+            server="    + $this.dbHost + ";
+            port="      + $this.dbPort + ";
+            uid="       + $this.dbUser + ";
+            pwd="       + $this.dbPass + ";
+            database="  + $this.dbName + ";
             Pooling=FALSE" 
 
         <# Connect to database #>
@@ -42,20 +49,39 @@ class Database {
         $connection.Open() 
 
         <# Return Connection as Object #>
-        $this.databaseConnection = $connection
-        return $connection
+        $this.dbConnection = $connection
+
+        return $this.getConnectionState()
     } 
 
-    <# Initialize Database Input #>
+    <# DOC: Method to disconnect the database connection #>
+    [string] disconnect () {
+        $this.dbConnection = $this.dbConnection.Close()
+        return $this.getConnectionState()
+    }
+
+    <# DOC: Method to inserert data into database #>
     [object] insert ( $sql ) {
-        
-        <# Create new Object #>
-        $command = $this.databaseConnection.CreateCommand()
+        $command = $this.dbConnection.CreateCommand()
         $command.CommandText = $sql 
         $insert = $command.ExecuteNonQuery()       
         $command.Dispose() 
 
-        <# Return Connection as Object #>
         return $insert
+    }
+
+    <# DOC: Method to get current state of connection #>
+    [string] getConnectionState () {
+
+        if ( $this.dbConnection -eq $null ) {
+            return "closed"
+        }
+
+        return $this.dbConnection.State
+    }
+
+    <# DOC: Method to change database port #>
+    [void] setPort ( [int] $dbPort ) {
+
     }
 }
