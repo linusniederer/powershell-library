@@ -2,9 +2,9 @@ $env:PSModulePath += ";C:\Users\linusniederer.OPACC\myCloud\Projekte\Aktuell\Git
 Import-Module Logging
 
 
-Write-Log "Warning in Matrix!"
-Write-Log "Error in Matrix!" 
-Write-Log "Matrix is Normal!"
+Write-Log "There is a Warning in the Matrix"
+Write-Log "There is an Error in the Matrix!" 
+Write-Log "There is everything okay in the Matrix"
 Write-Log "Matrix is successful!"
 
 
